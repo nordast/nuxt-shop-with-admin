@@ -51,7 +51,7 @@ const form = ref<PAYLOAD>({
                 />
               </div>
               <Button type="submit" class="w-full"> Create an account </Button>
-              <AuthSotialButton icon="uil:github" label="Login with GitHub" />
+              <AuthGithubButton icon="uil:github" label="Login with GitHub" />
             </div>
             <div class="mt-4 text-center text-sm">
               Already have an account?
