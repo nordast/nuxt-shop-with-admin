@@ -1,4 +1,4 @@
-import db from "@/utils/db";
+import db from "~/utils/db";
 import { sanitizeUser } from "~/server/api/utils/auth";
 
 export default defineOAuthGitHubEventHandler({
@@ -19,7 +19,7 @@ export default defineOAuthGitHubEventHandler({
         data: {
           email: user.email,
           name: user.name,
-          avatarUr: user.avatarUrl,
+          avatarUr: user.avatar_url,
         },
       });
     }
