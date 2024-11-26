@@ -9,8 +9,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/icon',
     "@nuxtjs/cloudinary",
+    // '@prisma/nuxt'
     'nuxt-auth-utils',
-    '@prisma/nuxt'
+    '@nuxt/eslint'
   ],
   shadcn: {
     prefix: '',
