@@ -37,11 +37,6 @@ const onSubmit = async () => {
     setLoading(false);
   }
 };
-
-showMessage({
-  title: "Registration was successful!",
-  description: "Please log in to access your account.",
-});
 </script>
 
 <template>
