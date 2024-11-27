@@ -13,18 +13,35 @@ const form = ref<PAYLOAD>({
   password: "",
 });
 
+const { isLoading, setLoading, showError, showMessage } = useStore();
+
 const onSubmit = async () => {
   try {
+    setLoading(true);
+
     await $fetch("/api/auth/login", {
       method: "POST",
       body: form.value,
     });
 
-    navigateTo("/");
+    showMessage({
+      title: "Login successful!",
+      description: " Welcome to your account.",
+    });
+
+    await navigateTo("/");
   } catch (e) {
-    console.log(e);
+    const error = handlerError(e);
+    showError(error);
+  } finally {
+    setLoading(false);
   }
 };
+
+showMessage({
+  title: "Registration was successful!",
+  description: "Please log in to access your account.",
+});
 </script>
 
 <template>
@@ -40,13 +57,7 @@ const onSubmit = async () => {
         <div class="grid gap-4">
           <div class="grid gap-2">
             <Label for="email">Email</Label>
-            <Input
-              id="email"
-              v-model="form.email"
-              type="email"
-              placeholder="email@example.com"
-              required
-            />
+            <Input id="email" v-model="form.email" type="email" required />
           </div>
           <div class="grid gap-2">
             <Label for="password">Password</Label>
@@ -57,7 +68,9 @@ const onSubmit = async () => {
               required
             />
           </div>
-          <Button type="submit" class="w-full"> Login </Button>
+          <Button :disabled="isLoading" type="submit" class="w-full">
+            Login
+          </Button>
           <AuthGithubButton icon="uil:github" label="Login with GitHub" />
         </div>
         <div class="mt-4 text-center text-sm">

@@ -15,16 +15,28 @@ const form = ref<PAYLOAD>({
   password: "",
 });
 
+const { isLoading, setLoading, showError, showMessage } = useStore();
+
 const onSubmit = async () => {
   try {
+    setLoading(true);
+
     await $fetch("/api/auth/register", {
       method: "POST",
       body: form.value,
     });
 
-    navigateTo("/");
+    showMessage({
+      title: "Registration was successful!",
+      description: "Please log in to access your account.",
+    });
+
+    await navigateTo("/");
   } catch (e) {
-    console.log(e);
+    const error = handlerError(e);
+    showError(error);
+  } finally {
+    setLoading(false);
   }
 };
 </script>
@@ -42,17 +54,11 @@ const onSubmit = async () => {
         <div class="grid gap-4">
           <div class="grid gap-2">
             <Label for="name">Name</Label>
-            <Input id="name" v-model="form.name" placeholder="Name" />
+            <Input id="name" v-model="form.name" />
           </div>
           <div class="grid gap-2">
             <Label for="email">Email</Label>
-            <Input
-              id="email"
-              v-model="form.email"
-              type="email"
-              placeholder="email@example.com"
-              required
-            />
+            <Input id="email" v-model="form.email" type="email" required />
           </div>
           <div class="grid gap-2">
             <Label for="password">Password</Label>
@@ -63,7 +69,9 @@ const onSubmit = async () => {
               required
             />
           </div>
-          <Button type="submit" class="w-full"> Create an account </Button>
+          <Button :disabled="isLoading" type="submit" class="w-full">
+            Create an account
+          </Button>
           <AuthGithubButton icon="uil:github" label="Login with GitHub" />
         </div>
         <div class="mt-4 text-center text-sm">
