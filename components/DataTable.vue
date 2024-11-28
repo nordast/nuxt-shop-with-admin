@@ -21,6 +21,7 @@ const props = defineProps<{
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   columnToSearch: string;
+  editLink: string;
 }>();
 
 const columnFilters = ref<ColumnFiltersState>([]);
@@ -46,10 +47,15 @@ const table = useVueTable({
   //   pagination: { pageSize: 1 },
   // },
 });
+
+const handleRowClick = (id: string) => {
+  navigateTo(props.editLink.replace(":id", id));
+};
 </script>
 
 <template>
   <div>
+    <!--  Filter  -->
     <div class="flex items-center py-4">
       <Input
         class="max-w-sm"
@@ -63,6 +69,7 @@ const table = useVueTable({
       />
     </div>
 
+    <!--  Table  -->
     <div class="border rounded-md">
       <Table>
         <TableHeader>
@@ -85,6 +92,8 @@ const table = useVueTable({
               v-for="row in table.getRowModel().rows"
               :key="row.id"
               :data-state="row.getIsSelected() ? 'selected' : undefined"
+              class="cursor-pointer"
+              @click="handleRowClick(row.original.id)"
             >
               <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                 <FlexRender
@@ -105,6 +114,7 @@ const table = useVueTable({
       </Table>
     </div>
 
+    <!--  Paginator  -->
     <div class="flex items-center justify-end py-4 space-x-2">
       <Button
         variant="outline"

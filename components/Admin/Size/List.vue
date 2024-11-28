@@ -31,6 +31,7 @@ const breadcrumbs = [
     :columns="columns"
     :data="sizes"
     column-to-search="name"
+    edit-link="/admin/sizes/:id"
   ></DataTable>
 </template>
 

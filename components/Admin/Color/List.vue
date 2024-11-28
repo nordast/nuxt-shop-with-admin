@@ -31,6 +31,7 @@ const breadcrumbs = [
     :columns="columns"
     :data="colors"
     column-to-search="name"
+    edit-link="/admin/colors/:id"
   ></DataTable>
 </template>
 
