@@ -4,27 +4,25 @@ import { useToast } from "@/components/ui/toast/use-toast";
 interface State {
   isLoading: boolean;
   appError: APIError | null;
-  isAlertModalVisible: boolean;
 }
 
 const state = reactive<State>({
   isLoading: false,
   appError: null,
-  isAlertModalVisible: false,
 });
 
 export default () => {
-  const { isLoading, appError, isAlertModalVisible } = toRefs(state);
+  const { isLoading, appError } = toRefs(state);
   const { toast } = useToast();
 
   const setLoading = (value: boolean) => (state.isLoading = value);
 
-  const setError = (error: null | APIError) => (state.appError = error);
+  // const setError = (error: null | APIError) => (state.appError = error);
 
   const showError = (error: APIError) => {
     toast({
       variant: "destructive",
-      title: "Error: " + error.statusCode,
+      title: "Error " + error.statusCode,
       description: error.message ? error.message : error.statusMessage,
     });
   };
@@ -41,16 +39,12 @@ export default () => {
     });
   };
 
-  const setAlertModal = (value: boolean) => (state.isAlertModalVisible = value);
-
   return {
     isLoading,
     appError,
     setLoading,
-    setError,
+    // setError,
     showError,
     showMessage,
-    isAlertModalVisible,
-    setAlertModal,
   };
 };

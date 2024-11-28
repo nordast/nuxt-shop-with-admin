@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const { isLoading, isAlertModalVisible, setAlertModal } = useStore();
+const props = defineProps<{
+  isOpen: boolean;
+}>();
 
-const isModalVisible = computed(() => isAlertModalVisible.value);
+const { isLoading } = useStore();
 
-const emits = defineEmits(["onConfirm"]);
+const isModalVisible = computed(() => props.isOpen);
+
+const emits = defineEmits(["onConfirm", "onClose"]);
 </script>
 
 <template>
@@ -11,14 +15,10 @@ const emits = defineEmits(["onConfirm"]);
     :is-modal-visible="isModalVisible"
     title="Aru you sure?"
     description="This action cannot be undone."
-    @on-close="setAlertModal(false)"
+    @on-close="emits('onClose')"
   >
     <div class="pt-6 space-x-4 flex items-center justify-end w-full">
-      <Button
-        :disabled="isLoading"
-        variant="outline"
-        @click="setAlertModal(false)"
-      >
+      <Button :disabled="isLoading" variant="outline" @click="emits('onClose')">
         Cancel
       </Button>
       <Button

@@ -4,20 +4,14 @@ import { useForm } from "vee-validate";
 import type { RouteParams } from "~/types";
 
 const route = useRoute();
-const {
-  isLoading,
-  setLoading,
-  showMessage,
-  showError,
-  setAlertModal,
-  isAlertModalVisible,
-} = useStore();
+const { isLoading, setLoading, showMessage, showError } = useStore();
 
 const title = ref("Edit Category");
 const description = ref("Edit Category");
 const toastMessage = ref("Category updated successfully");
 const action = ref("Update");
 const isEditing = ref(true);
+const isAlertModalVisible = ref(false);
 
 // read
 const currentCategory = await $fetch(
@@ -69,7 +63,6 @@ const onSubmit = form.handleSubmit(async (values) => {
       title: toastMessage.value,
     });
 
-    //TODO refresh data
     await navigateTo("/admin/categories");
   } catch (e) {
     const error = handlerError(e);
@@ -95,13 +88,12 @@ const deleteCategory = async () => {
       title: "Category deleted successfully",
     });
 
-    //TODO refresh data
     await navigateTo("/admin/categories");
   } catch (e) {
     const error = handlerError(e);
     showError(error);
   } finally {
-    setAlertModal(false);
+    isAlertModalVisible.value = false;
     setLoading(false);
   }
 };
@@ -114,7 +106,7 @@ const deleteCategory = async () => {
         v-if="isEditing"
         variant="destructive"
         size="sm"
-        @click="setAlertModal(true)"
+        @click="(isAlertModalVisible = true)"
       >
         <Icon name="lucide:trash" class="size-4" />
         Remove
@@ -144,7 +136,12 @@ const deleteCategory = async () => {
       }}</Button>
     </form>
   </div>
-  <AlertModal v-if="isAlertModalVisible" @on-confirm="deleteCategory" />
+  <AlertModal
+    v-if="isAlertModalVisible"
+    :is-open="isAlertModalVisible"
+    @on-confirm="deleteCategory"
+    @on-close="(isAlertModalVisible = false)"
+  />
 </template>
 
 <style scoped></style>

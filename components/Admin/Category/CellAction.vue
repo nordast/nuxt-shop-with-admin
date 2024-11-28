@@ -1,11 +1,6 @@
 <script setup lang="ts">
-const {
-  showMessage,
-  showError,
-  isAlertModalVisible,
-  setAlertModal,
-  setLoading,
-} = useStore();
+const { showMessage, showError, setLoading } = useStore();
+const isAlertModalVisible = ref(false);
 
 const props = defineProps<{
   category: {
@@ -38,7 +33,7 @@ const deleteCategory = async () => {
     const error = handlerError(e);
     showError(error);
   } finally {
-    setAlertModal(false);
+    isAlertModalVisible.value = false;
     setLoading(false);
   }
 };
@@ -61,12 +56,17 @@ const deleteCategory = async () => {
         <Icon name="lucide:pencil" class="size-4 mr-2" />
         <span>Edit</span>
       </DropdownMenuItem>
-      <DropdownMenuItem @click="setAlertModal(true)">
+      <DropdownMenuItem @click="(isAlertModalVisible = true)">
         <Icon name="lucide:trash" class="size-4 mr-2" />
         <span>Delete</span>
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 
-  <AlertModal v-if="isAlertModalVisible" @on-confirm="deleteCategory" />
+  <AlertModal
+    v-if="isAlertModalVisible"
+    :is-open="isAlertModalVisible"
+    @on-confirm="deleteCategory"
+    @on-close="(isAlertModalVisible = false)"
+  />
 </template>
