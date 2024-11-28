@@ -22,7 +22,6 @@ const isEditing = ref(true);
 // read
 const currentCategory = await $fetch(
   `/api/admin/categories/${(route.params as RouteParams).categoryId}`,
-  {},
 );
 
 watchEffect(() => {

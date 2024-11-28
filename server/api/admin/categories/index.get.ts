@@ -1,3 +1,9 @@
+import db from "~/utils/db";
+
 export default defineEventHandler(async () => {
-  return null;
+  return db.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 });

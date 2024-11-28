@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { columns } from "~/components/Admin/Category/columns";
+
+const { data: categories, status } = await useFetch("/api/admin/categories/", {
+  key: "categories",
+});
+</script>
 
 <template>
   <TheHeading title="Categories" description="Manage categories">
@@ -9,6 +15,13 @@
       </Button>
     </NuxtLink>
   </TheHeading>
+
+  <DataTable
+    v-if="status !== 'pending'"
+    :columns="columns"
+    :data="categories"
+    column-to-search="name"
+  ></DataTable>
 </template>
 
 <style scoped></style>
