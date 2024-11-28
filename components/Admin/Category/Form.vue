@@ -97,11 +97,25 @@ const deleteCategory = async () => {
     setLoading(false);
   }
 };
+
+const breadcrumbs = [
+  {
+    text: "Categories",
+    href: "/admin/categories",
+  },
+  {
+    text: title.value,
+  },
+];
 </script>
 
 <template>
   <div>
-    <TheHeading :title="title" :description="description">
+    <TheHeading
+      :title="title"
+      :description="description"
+      :breadcrumbs="breadcrumbs"
+    >
       <Button
         v-if="isEditing"
         variant="destructive"

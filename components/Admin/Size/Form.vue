@@ -92,11 +92,25 @@ const deleteSize = async () => {
     setLoading(false);
   }
 };
+
+const breadcrumbs = [
+  {
+    text: "Sizes",
+    href: "/admin/sizes",
+  },
+  {
+    text: title.value,
+  },
+];
 </script>
 
 <template>
   <div>
-    <TheHeading :title="title" :description="description">
+    <TheHeading
+      :title="title"
+      :description="description"
+      :breadcrumbs="breadcrumbs"
+    >
       <Button
         v-if="isEditing"
         variant="destructive"

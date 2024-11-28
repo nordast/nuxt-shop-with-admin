@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { Breadcrumb } from "~/types";
+
 interface HeadingProps {
   title: string;
   description: string;
+  breadcrumbs?: Breadcrumb[] | undefined;
 }
 defineProps<HeadingProps>();
 </script>
@@ -14,7 +17,10 @@ defineProps<HeadingProps>();
     </div>
     <slot />
   </div>
-  <Separator class="my-4" />
+
+  <AppBreadcrumb :breadcrumbs="breadcrumbs" />
+
+  <Separator class="mt-2 mb-4" />
 </template>
 
 <style scoped></style>

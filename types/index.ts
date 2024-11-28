@@ -11,3 +11,8 @@ export type RouteParams = {
   colorId: string;
   sizeId: string;
 };
+
+export type Breadcrumb = {
+  text: string;
+  href?: string;
+};

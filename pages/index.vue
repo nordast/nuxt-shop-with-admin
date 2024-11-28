@@ -18,11 +18,6 @@ const logout = async () => {
     <pre>{{ loggedIn }}</pre>
     <NuxtLink to="/auth/login">Login</NuxtLink>
     <NuxtLink to="/auth/register">Register</NuxtLink>
-    <NuxtLink to="/admin">Admin</NuxtLink>
-    <NuxtLink to="/admin/categories">Admin Categories</NuxtLink>
-    <NuxtLink to="/admin/colors">Admin Colors</NuxtLink>
-    <NuxtLink to="/admin/sizes">Admin Sizes</NuxtLink>
-
     <button @click="logout">Logout</button>
   </div>
 </template>

@@ -4,10 +4,20 @@ import { columns } from "~/components/Admin/Color/columns";
 const { data: colors, status } = await useFetch("/api/admin/colors/", {
   key: "colors",
 });
+
+const breadcrumbs = [
+  {
+    text: "Colors",
+  },
+];
 </script>
 
 <template>
-  <TheHeading title="Colors" description="Manage colors">
+  <TheHeading
+    title="Colors"
+    description="Manage colors"
+    :breadcrumbs="breadcrumbs"
+  >
     <NuxtLink to="/admin/colors/create">
       <Button>
         <Icon name="lucide:plus" class="size-4" />

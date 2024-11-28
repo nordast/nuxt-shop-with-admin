@@ -4,10 +4,20 @@ import { columns } from "~/components/Admin/Category/columns";
 const { data: categories, status } = await useFetch("/api/admin/categories/", {
   key: "categories",
 });
+
+const breadcrumbs = [
+  {
+    text: "Categories",
+  },
+];
 </script>
 
 <template>
-  <TheHeading title="Categories" description="Manage categories">
+  <TheHeading
+    title="Categories"
+    description="Manage categories"
+    :breadcrumbs="breadcrumbs"
+  >
     <NuxtLink to="/admin/categories/create">
       <Button>
         <Icon name="lucide:plus" class="size-4" />
