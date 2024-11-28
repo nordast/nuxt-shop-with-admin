@@ -6,9 +6,9 @@ export default defineEventHandler(async (event) => {
 
   if (session.user && session.user.role === "ADMIN") {
     try {
-      return db.category.delete({
+      return db.color.delete({
         where: {
-          id: event.context.params?.categoryId,
+          id: event.context.params?.colorId,
         },
       });
     } catch {

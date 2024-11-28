@@ -1,3 +1,4 @@
+import { colorSchema } from "~/utils/validations";
 import db from "~/utils/db";
 
 export default defineEventHandler(async (event) => {
@@ -5,10 +6,18 @@ export default defineEventHandler(async (event) => {
   const session = await getUserSession(event);
 
   if (session.user && session.user.role === "ADMIN") {
+    const { name, value } = await readValidatedBody(event, (body) =>
+      colorSchema.parse(body),
+    );
+
     try {
-      return db.category.delete({
+      return db.color.update({
         where: {
-          id: event.context.params?.categoryId,
+          id: event.context.params?.colorId,
+        },
+        data: {
+          name,
+          value,
         },
       });
     } catch {

@@ -6,35 +6,36 @@ import type { RouteParams } from "~/types";
 const route = useRoute();
 const { isLoading, setLoading, showMessage, showError } = useStore();
 
-const title = ref("Edit Category");
-const description = ref("Edit Category");
-const toastMessage = ref("Category updated successfully");
+const title = ref("Edit Color");
+const description = ref("Edit Color");
+const toastMessage = ref("Color updated successfully");
 const action = ref("Update");
 const isEditing = ref(true);
 const isAlertModalVisible = ref(false);
 
 // read
-const currentCategory = await $fetch(
-  `/api/admin/categories/${(route.params as RouteParams).categoryId}`,
+const currentColor = await $fetch(
+  `/api/admin/colors/${(route.params as RouteParams).colorId}`,
 );
 
 watchEffect(() => {
-  if (!currentCategory?.id) {
-    title.value = "Creat Category";
-    description.value = "Add a new category";
-    toastMessage.value = "Category added successfully";
+  if (!currentColor?.id) {
+    title.value = "Creat Color";
+    description.value = "Add a new color";
+    toastMessage.value = "Color added successfully";
     action.value = "Create";
     isEditing.value = false;
   } else {
-    description.value = "Edit " + currentCategory.name;
+    description.value = "Edit " + currentColor.name;
   }
 });
 
-const formSchema = toTypedSchema(categorySchema);
+const formSchema = toTypedSchema(colorSchema);
 const form = useForm({
   validationSchema: formSchema,
-  initialValues: currentCategory || {
+  initialValues: currentColor || {
     name: "",
+    value: "#000000",
   },
 });
 
@@ -45,7 +46,7 @@ const onSubmit = form.handleSubmit(async (values) => {
     if (isEditing.value) {
       // update
       await $fetch(
-        `/api/admin/categories/${(route.params as RouteParams).categoryId}`,
+        `/api/admin/colors/${(route.params as RouteParams).colorId}`,
         {
           method: "PATCH",
           body: values,
@@ -53,7 +54,7 @@ const onSubmit = form.handleSubmit(async (values) => {
       );
     } else {
       // create
-      await $fetch("/api/admin/categories", {
+      await $fetch("/api/admin/colors", {
         method: "POST",
         body: values,
       });
@@ -63,7 +64,7 @@ const onSubmit = form.handleSubmit(async (values) => {
       title: toastMessage.value,
     });
 
-    await navigateTo("/admin/categories");
+    await navigateTo("/admin/colors");
   } catch (e) {
     const error = handlerError(e);
     showError(error);
@@ -72,23 +73,20 @@ const onSubmit = form.handleSubmit(async (values) => {
   }
 });
 
-const deleteCategory = async () => {
+const deleteColor = async () => {
   try {
     setLoading(true);
 
     // delete
-    await $fetch(
-      `/api/admin/categories/${(route.params as RouteParams).categoryId}`,
-      {
-        method: "DELETE",
-      },
-    );
-
-    showMessage({
-      title: "Category deleted successfully",
+    await $fetch(`/api/admin/colors/${(route.params as RouteParams).colorId}`, {
+      method: "DELETE",
     });
 
-    await navigateTo("/admin/categories");
+    showMessage({
+      title: "Color deleted successfully",
+    });
+
+    await navigateTo("/admin/colors");
   } catch (e) {
     const error = handlerError(e);
     showError(error);
@@ -120,7 +118,23 @@ const deleteCategory = async () => {
             <FormLabel>Name</FormLabel>
             <FormControl>
               <Input
-                placeholder="Category Name"
+                placeholder="Color Name"
+                v-bind="componentField"
+                :disabled="isLoading"
+              />
+            </FormControl>
+            <FormDescription />
+            <FormMessage />
+          </FormItem>
+        </FormField>
+
+        <FormField v-slot="{ componentField }" name="value">
+          <FormItem>
+            <FormLabel>Color Code</FormLabel>
+            <FormControl>
+              <Input
+                type="color"
+                placeholder="#000000"
                 v-bind="componentField"
                 :disabled="isLoading"
               />
@@ -139,7 +153,7 @@ const deleteCategory = async () => {
   <AlertModal
     v-if="isAlertModalVisible"
     :is-open="isAlertModalVisible"
-    @on-confirm="deleteCategory"
+    @on-confirm="deleteColor"
     @on-close="(isAlertModalVisible = false)"
   />
 </template>

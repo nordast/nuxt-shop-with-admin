@@ -10,14 +10,21 @@ export default defineEventHandler(async (event) => {
       categorySchema.parse(body),
     );
 
-    return db.category.update({
-      where: {
-        id: event.context.params?.categoryId,
-      },
-      data: {
-        name,
-      },
-    });
+    try {
+      return db.category.update({
+        where: {
+          id: event.context.params?.categoryId,
+        },
+        data: {
+          name,
+        },
+      });
+    } catch {
+      throw createError({
+        status: 404,
+        message: "Page not found",
+      });
+    }
   } else {
     throw createError({
       status: 403,

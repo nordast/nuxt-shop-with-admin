@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "clean": "nuxi cleanup",
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",

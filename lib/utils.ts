@@ -15,3 +15,8 @@ export function valueUpdater<T extends Updater<any>>(
       ? updaterOrValue(ref.value)
       : updaterOrValue;
 }
+
+export function formatDateTime(date: string) {
+  // return useDateFormat(new Date(date), "YYYY-MM-DD HH:mm:ss").value;
+  return new Date(date).toLocaleString();
+}

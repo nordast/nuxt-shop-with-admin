@@ -1,3 +1,4 @@
+import { colorSchema } from "~/utils/validations";
 import db from "~/utils/db";
 
 export default defineEventHandler(async (event) => {
@@ -5,18 +6,17 @@ export default defineEventHandler(async (event) => {
   const session = await getUserSession(event);
 
   if (session.user && session.user.role === "ADMIN") {
-    try {
-      return db.category.delete({
-        where: {
-          id: event.context.params?.categoryId,
-        },
-      });
-    } catch {
-      throw createError({
-        status: 404,
-        message: "Page not found",
-      });
-    }
+    const { name, value } = await readValidatedBody(event, (body) =>
+      colorSchema.parse(body),
+    );
+
+    return db.color.create({
+      data: {
+        name,
+        value,
+        userId: session.user.id,
+      },
+    });
   } else {
     throw createError({
       status: 403,

@@ -20,6 +20,7 @@ const logout = async () => {
     <NuxtLink to="/auth/register">Register</NuxtLink>
     <NuxtLink to="/admin">Admin</NuxtLink>
     <NuxtLink to="/admin/categories">Admin Categories</NuxtLink>
+    <NuxtLink to="/admin/colors">Admin Colors</NuxtLink>
 
     <button @click="logout">Logout</button>
   </div>
