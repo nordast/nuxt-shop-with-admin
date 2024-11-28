@@ -14,3 +14,8 @@ export const colorSchema = z.object({
   name: z.string().min(1).max(255),
   value: z.string().min(1).max(255).default("#000000"),
 });
+
+export const sizeSchema = z.object({
+  name: z.string().min(1).max(255),
+  value: z.string().min(1).max(255),
+});

@@ -12,7 +12,7 @@ const logout = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col space-y-4 p-10">
+  <div class="flex flex-col space-y-2 p-10">
     <p>INDEX</p>
     <pre>{{ user }}</pre>
     <pre>{{ loggedIn }}</pre>
@@ -21,6 +21,7 @@ const logout = async () => {
     <NuxtLink to="/admin">Admin</NuxtLink>
     <NuxtLink to="/admin/categories">Admin Categories</NuxtLink>
     <NuxtLink to="/admin/colors">Admin Colors</NuxtLink>
+    <NuxtLink to="/admin/sizes">Admin Sizes</NuxtLink>
 
     <button @click="logout">Logout</button>
   </div>
