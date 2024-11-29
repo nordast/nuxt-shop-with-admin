@@ -15,7 +15,7 @@ defineProps<{
   <FormField v-slot="{ componentField }" :name="name">
     <FormItem>
       <FormLabel>{{ label }}</FormLabel>
-      <Select v-bind="componentField" :disabled="isLoading">
+      <Select v-bind="componentField">
         <FormControl>
           <SelectTrigger>
             <SelectValue :placeholder="`Select a ${label.toLowerCase()}`" />

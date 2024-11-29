@@ -18,7 +18,7 @@ defineProps<HeadingProps>();
     <slot />
   </div>
 
-  <AdminBreadcrumbs :breadcrumbs="breadcrumbs" />
+  <!--  <AdminBreadcrumbs :breadcrumbs="breadcrumbs" />-->
 
   <Separator class="mt-2 mb-4" />
 </template>

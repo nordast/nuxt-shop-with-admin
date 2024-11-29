@@ -3,7 +3,6 @@ defineProps<{
   name: string;
   label: string;
   placeholder?: string;
-  type?: string;
 }>();
 </script>
 
@@ -13,7 +12,8 @@ defineProps<{
       <FormLabel>{{ label }}</FormLabel>
       <FormControl>
         <Input
-          :type="type || 'text'"
+          type="number"
+          min="0"
           :placeholder="placeholder || `Enter a ${label}`"
           v-bind="componentField"
         />
