@@ -42,7 +42,7 @@ const deleteCategory = async () => {
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="ghost" class="size-8 p-0">
+      <Button variant="ghost" class="size-8 p-0" @click.stop.prevent>
         <span class="sr-only">Open Menu</span>
         <Icon name="lucide:more-horizontal" class="size-4" />
       </Button>
@@ -63,7 +63,7 @@ const deleteCategory = async () => {
     </DropdownMenuContent>
   </DropdownMenu>
 
-  <AlertModal
+  <AdminAlertModal
     v-if="isAlertModalVisible"
     :is-open="isAlertModalVisible"
     @on-confirm="deleteCategory"

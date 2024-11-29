@@ -1,7 +1,6 @@
 import { h } from "vue";
 import ActionMenu from "./CellAction.vue";
 import type { ColumnDef } from "@tanstack/vue-table";
-import { formatDateTime } from "~/lib/utils";
 
 export interface Category {
   id: string;
@@ -17,9 +16,6 @@ export const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "createdAt",
     header: "Created At",
-    cell: ({ row }) => {
-      return formatDateTime(row.original.createdAt);
-    },
   },
   {
     id: "actions",

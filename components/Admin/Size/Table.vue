@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { columns } from "~/components/Admin/Size/columns";
+import type { Size } from "@prisma/client";
+import { formatDateTime } from "~/lib/utils";
 
 const { data: sizes, status } = await useFetch("/api/admin/sizes/", {
   key: "sizes",
+  transform: (data) =>
+    data.map((item: Size) => ({
+      ...item,
+      createdAt: formatDateTime(item.createdAt),
+    })),
 });
 
-const breadcrumbs = [
-  {
-    text: "Sizes",
-  },
-];
+const breadcrumbs = [{ text: "Sizes" }];
 </script>
 
 <template>
-  <TheHeading
+  <AdminHeading
     title="Sizes"
     description="Manage sizes"
     :breadcrumbs="breadcrumbs"
@@ -24,15 +27,15 @@ const breadcrumbs = [
         Add New
       </Button>
     </NuxtLink>
-  </TheHeading>
+  </AdminHeading>
 
-  <DataTable
+  <AdminDataTable
     v-if="status !== 'pending'"
     :columns="columns"
     :data="sizes"
     column-to-search="name"
     edit-link="/admin/sizes/:id"
-  ></DataTable>
+  />
 </template>
 
 <style scoped></style>

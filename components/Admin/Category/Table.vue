@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { columns } from "~/components/Admin/Category/columns";
+import type { Category } from "@prisma/client";
+import { formatDateTime } from "~/lib/utils";
 
 const { data: categories, status } = await useFetch("/api/admin/categories/", {
   key: "categories",
+  transform: (data) =>
+    data.map((item: Category) => ({
+      ...item,
+      createdAt: formatDateTime(item.createdAt),
+    })),
 });
 
 const breadcrumbs = [
@@ -13,7 +20,7 @@ const breadcrumbs = [
 </script>
 
 <template>
-  <TheHeading
+  <AdminHeading
     title="Categories"
     description="Manage categories"
     :breadcrumbs="breadcrumbs"
@@ -24,15 +31,15 @@ const breadcrumbs = [
         Add New
       </Button>
     </NuxtLink>
-  </TheHeading>
+  </AdminHeading>
 
-  <DataTable
+  <AdminDataTable
     v-if="status !== 'pending'"
     :columns="columns"
     :data="categories"
     column-to-search="name"
     edit-link="/admin/categories/:id"
-  ></DataTable>
+  />
 </template>
 
 <style scoped></style>

@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { columns } from "~/components/Admin/Color/columns";
+import type { Color } from "@prisma/client";
+import { formatDateTime } from "~/lib/utils";
 
 const { data: colors, status } = await useFetch("/api/admin/colors/", {
   key: "colors",
+  transform: (data) =>
+    data.map((item: Color) => ({
+      ...item,
+      createdAt: formatDateTime(item.createdAt),
+    })),
 });
 
 const breadcrumbs = [
@@ -13,7 +20,7 @@ const breadcrumbs = [
 </script>
 
 <template>
-  <TheHeading
+  <AdminHeading
     title="Colors"
     description="Manage colors"
     :breadcrumbs="breadcrumbs"
@@ -24,15 +31,15 @@ const breadcrumbs = [
         Add New
       </Button>
     </NuxtLink>
-  </TheHeading>
+  </AdminHeading>
 
-  <DataTable
+  <AdminDataTable
     v-if="status !== 'pending'"
     :columns="columns"
     :data="colors"
     column-to-search="name"
     edit-link="/admin/colors/:id"
-  ></DataTable>
+  />
 </template>
 
 <style scoped></style>

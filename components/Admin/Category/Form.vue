@@ -26,7 +26,7 @@ watchEffect(() => {
     action.value = "Create";
     isEditing.value = false;
   } else {
-    description.value = "Edit " + currentCategory.name;
+    description.value = "Edit " + currentCategory?.name;
   }
 });
 
@@ -111,7 +111,7 @@ const breadcrumbs = [
 
 <template>
   <div>
-    <TheHeading
+    <AdminHeading
       :title="title"
       :description="description"
       :breadcrumbs="breadcrumbs"
@@ -125,32 +125,19 @@ const breadcrumbs = [
         <Icon name="lucide:trash" class="size-4" />
         Remove
       </Button>
-    </TheHeading>
+    </AdminHeading>
 
     <form class="space-y-4 w-full" @submit.prevent="onSubmit">
       <div class="md:grid md:grid-cols-3 gap-8">
-        <FormField v-slot="{ componentField }" name="name">
-          <FormItem>
-            <FormLabel>Name</FormLabel>
-            <FormControl>
-              <Input
-                placeholder="Category Name"
-                v-bind="componentField"
-                :disabled="isLoading"
-              />
-            </FormControl>
-            <FormDescription />
-            <FormMessage />
-          </FormItem>
-        </FormField>
+        <AdminFormInput name="name" label="Name" />
       </div>
 
-      <Button :disabled="isLoading" type="submit" class="ml-auto">{{
-        action
-      }}</Button>
+      <Button :disabled="isLoading" type="submit" class="ml-auto">
+        {{ action }}
+      </Button>
     </form>
   </div>
-  <AlertModal
+  <AdminAlertModal
     v-if="isAlertModalVisible"
     :is-open="isAlertModalVisible"
     @on-confirm="deleteCategory"

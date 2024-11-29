@@ -2,7 +2,6 @@ import { h } from "vue";
 import ActionMenu from "./CellAction.vue";
 import type { ColumnDef } from "@tanstack/vue-table";
 import CellValue from "~/components/Admin/Color/CellValue.vue";
-import { formatDateTime } from "~/lib/utils";
 
 export interface Color {
   id: string;
@@ -26,9 +25,6 @@ export const columns: ColumnDef<Color>[] = [
   {
     accessorKey: "createdAt",
     header: "Created At",
-    cell: ({ row }) => {
-      return formatDateTime(row.original.createdAt);
-    },
   },
   {
     id: "actions",
