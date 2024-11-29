@@ -59,6 +59,8 @@ const form = useForm({
       },
 });
 
+const { setFieldValue } = form;
+
 const onSubmit = form.handleSubmit(async (values) => {
   try {
     setLoading(true);
@@ -142,7 +144,11 @@ const deleteProduct = async () => {
       <div class="md:grid md:grid-cols-3 gap-8">
         <AdminFormInput name="name" label="Name" />
 
-        <AdminFormNumber name="price" label="Price" />
+        <AdminFormNumber
+          name="price"
+          label="Price"
+          :set-field-value="setFieldValue"
+        />
 
         <AdminFormSelect
           name="categoryId"

@@ -3,22 +3,42 @@ defineProps<{
   name: string;
   label: string;
   placeholder?: string;
+  setFieldValue: (name: any, value: unknown) => void;
 }>();
 </script>
 
 <template>
-  <FormField v-slot="{ componentField }" :name="name">
+  <FormField v-slot="{ value }" :name="name">
     <FormItem>
       <FormLabel>{{ label }}</FormLabel>
-      <FormControl>
-        <Input
-          type="number"
-          min="0"
-          :placeholder="placeholder || `Enter a ${label}`"
-          v-bind="componentField"
-        />
-      </FormControl>
-      <FormDescription />
+      <NumberField
+        class="gap-2"
+        :min="1"
+        :format-options="{
+          style: 'currency',
+          currency: 'USD',
+          currencyDisplay: 'code',
+          currencySign: 'accounting',
+        }"
+        :model-value="value"
+        @update:model-value="
+          (v) => {
+            if (v) {
+              setFieldValue(name, v);
+            } else {
+              setFieldValue(name, undefined);
+            }
+          }
+        "
+      >
+        <NumberFieldContent>
+          <NumberFieldDecrement />
+          <FormControl>
+            <NumberFieldInput />
+          </FormControl>
+          <NumberFieldIncrement />
+        </NumberFieldContent>
+      </NumberField>
       <FormMessage />
     </FormItem>
   </FormField>
