@@ -16,7 +16,7 @@ const {
   public: { uploadPreset },
 } = useRuntimeConfig();
 
-const { isLoading } = useStore();
+const { isLoading, setLoading, showError, showMessage } = useStore();
 
 const emits = defineEmits(["onChange", "onRemove"]);
 
@@ -28,7 +28,26 @@ const handleError = () => console.log("error");
 const handleResult = () => console.log("result");
 
 const deleteImage = async (url: string) => {
-  console.log("Delete Image", url);
+  try {
+    setLoading(true);
+
+    const resourceName = getResourceName(url);
+
+    await $fetch(`/api/admin/cloudinary/${resourceName}`, {
+      method: "DELETE",
+    });
+
+    showMessage({
+      title: "Image deleted successfully",
+    });
+
+    emits("onRemove", url);
+  } catch (e) {
+    const error = handlerError(e);
+    showError(error);
+  } finally {
+    setLoading(false);
+  }
 };
 </script>
 

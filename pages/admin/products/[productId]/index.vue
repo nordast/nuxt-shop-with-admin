@@ -156,6 +156,16 @@ const deleteProduct = async () => {
                       value: [...componentField.modelValue, { url }],
                     })
                 "
+                @on-remove="
+                  (url) =>
+                    resetField({
+                      value: [
+                        ...componentField.modelValue.filter(
+                          (currentImage: Image) => currentImage.url !== url,
+                        ),
+                      ],
+                    })
+                "
               />
             </FormControl>
             <FormDescription />

@@ -13,7 +13,6 @@ definePageMeta({
       <NuxtLink to="/admin/colors">Colors</NuxtLink>
       <NuxtLink to="/admin/sizes">Sizes</NuxtLink>
       <NuxtLink to="/admin/products">Products</NuxtLink>
-      <NuxtLink to="/admin/products/create">Products Create</NuxtLink>
     </div>
   </div>
 </template>
