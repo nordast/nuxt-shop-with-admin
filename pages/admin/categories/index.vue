@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { columns } from "~/components/Admin/Category/columns";
 import type { Category } from "@prisma/client";
-import { formatDateTime } from "~/lib/utils";
+import { formatDateTime } from "~/utils";
 
 definePageMeta({
   middleware: "admin",

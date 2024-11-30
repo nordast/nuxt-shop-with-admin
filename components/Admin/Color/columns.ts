@@ -1,7 +1,7 @@
 import { h } from "vue";
 import ActionMenu from "./CellAction.vue";
 import type { ColumnDef } from "@tanstack/vue-table";
-import CellValue from "~/components/Admin/Color/CellValue.vue";
+import ColorValue from "~/components/Admin/Color/ColorValue.vue";
 
 export interface Color {
   id: string;
@@ -19,7 +19,7 @@ export const columns: ColumnDef<Color>[] = [
     accessorKey: "value",
     header: "Value",
     cell: ({ row }) => {
-      return h(CellValue, { colorCode: row.original.value });
+      return h(ColorValue, { colorCode: row.original.value });
     },
   },
   {

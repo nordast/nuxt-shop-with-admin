@@ -20,6 +20,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       uploadPreset: "",
+      cloudinaryCloudName: "",
     },
+    cloudinaryApiKey: "",
+    cloudinaryApiSecret: "",
   },
 });

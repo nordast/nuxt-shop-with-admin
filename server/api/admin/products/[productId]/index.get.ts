@@ -8,6 +8,12 @@ export default defineEventHandler(async (event) => {
   try {
     return await db.product.findUnique({
       where: { id },
+      include: {
+        images: true,
+        category: true,
+        color: true,
+        size: true,
+      },
     });
   } catch {
     throw createError({
