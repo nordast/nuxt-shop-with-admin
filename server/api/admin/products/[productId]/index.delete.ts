@@ -17,12 +17,26 @@ export default defineEventHandler(async (event) => {
         },
       });
 
-      // Delete  Cloudinary Images
-      for (const image of product.images) {
-        const name = getResourceName(image.url);
-        if (name) await deleteResourceFromCloudinary(name);
+      try {
+        // Delete  Cloudinary Images
+        for (const image of product.images) {
+          const name = getResourceName(image.url);
+          if (name) await deleteResourceFromCloudinary(name);
+        }
+      } catch {
+        throw createError({
+          status: 404,
+          message: "Images not deleted",
+        });
       }
+    } catch {
+      throw createError({
+        status: 404,
+        message: "Page not found",
+      });
+    }
 
+    try {
       return db.product.delete({
         where: {
           id: event.context.params?.productId,
@@ -34,7 +48,7 @@ export default defineEventHandler(async (event) => {
     } catch {
       throw createError({
         status: 404,
-        message: "Page not found",
+        message: "Product not deleted",
       });
     }
   } else {
