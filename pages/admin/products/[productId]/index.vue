@@ -2,7 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import type { RouteParams } from "~/types";
-import type { Category, Product, Color, Size } from "@prisma/client";
+import type { Category, Product, Color, Size, Image } from "@prisma/client";
 
 definePageMeta({
   middleware: "admin",
@@ -141,6 +141,29 @@ const deleteProduct = async () => {
     </AdminHeading>
 
     <form class="space-y-4 w-full" @submit.prevent="onSubmit">
+      <div class="rounded-md border p-4">
+        <FormField v-slot="{ componentField, resetField }" name="images">
+          <FormItem>
+            <FormLabel>Product Images</FormLabel>
+            <FormControl>
+              <AdminImageUpload
+                :value="
+                  componentField.modelValue.map((image: Image) => image.url)
+                "
+                @on-change="
+                  (url) =>
+                    resetField({
+                      value: [...componentField.modelValue, { url }],
+                    })
+                "
+              />
+            </FormControl>
+            <FormDescription />
+            <FormMessage />
+          </FormItem>
+        </FormField>
+      </div>
+
       <div class="md:grid md:grid-cols-3 gap-8">
         <AdminFormInput name="name" label="Name" />
 

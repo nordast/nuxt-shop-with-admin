@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
         name,
         images: {
           createMany: {
-            data: { ...images.map((img) => img) },
+            data: [...images.map((img) => img)],
           },
         },
         price,
