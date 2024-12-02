@@ -1,3 +1,5 @@
+import type { Category, Color, Image, Product, Size } from "@prisma/client";
+
 export type APIError = {
   statusCode: number;
   statusMessage: string;
@@ -15,4 +17,11 @@ export type RouteParams = {
 export type Breadcrumb = {
   text: string;
   href?: string;
+};
+
+export type SafeProduct = Product & {
+  category: Category;
+  size: Size;
+  color: Color;
+  images: Image[];
 };

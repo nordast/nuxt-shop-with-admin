@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.16",
+    "@iconify-json/radix-icons": "^1.2.1",
     "@prisma/client": "^5.22.0",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",

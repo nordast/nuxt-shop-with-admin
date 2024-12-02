@@ -19,9 +19,12 @@ export function formatDateTime(
 }
 
 export function formatPrice(price: number) {
+  const isInteger = Number.isInteger(price);
+
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: isInteger ? 0 : 2,
   });
 
   return formatter.format(price);

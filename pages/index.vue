@@ -1,7 +1,10 @@
 <script setup></script>
 
 <template>
-  <TheHero />
+  <section>
+    <TheHero />
+    <ProductFeaturedList />
+  </section>
 </template>
 
 <style scoped></style>
