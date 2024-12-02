@@ -82,3 +82,8 @@
     @apply text-muted-foreground hover:text-primary hover:underline transition-colors;
   }
 }
+
+.dark-mode body {
+  background-color: #202125;
+  color: #bdbec3;
+}

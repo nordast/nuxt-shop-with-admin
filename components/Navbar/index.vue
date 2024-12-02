@@ -15,6 +15,8 @@ const { user } = useUserSession();
           <NavbarUserMenu />
         </template>
 
+        <NavbarDarkMode />
+
         <NuxtLink to="/cart">
           <Button class="relative rounded-full px-5 py-1 h-8">
             <Icon name="lucide:shopping-bag" class="size-4 mr-2" />
