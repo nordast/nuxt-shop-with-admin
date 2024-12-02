@@ -5,6 +5,8 @@ import { formatPrice } from "~/utils";
 defineProps<{
   data: SafeProduct;
 }>();
+
+const { onOpen } = usePreviewModal();
 </script>
 
 <template>
@@ -20,7 +22,15 @@ defineProps<{
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger as-child>
-                <Button size="icon" class="rounded-full">
+                <Button
+                  size="icon"
+                  class="rounded-full"
+                  @click.stop="
+                    () => {
+                      onOpen(data);
+                    }
+                  "
+                >
                   <Icon name="lucide:expand" class="size-4" />
                 </Button>
               </TooltipTrigger>
@@ -41,6 +51,7 @@ defineProps<{
       <Button variant="secondary" class="mt-4 w-full"> Add to Cart </Button>
     </CardContent>
   </Card>
+  <ProductModal />
 </template>
 
 <style scoped></style>
