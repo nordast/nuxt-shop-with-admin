@@ -8,9 +8,7 @@ const colorMode = useColorMode();
       <Button variant="secondary" class="relative">
         <Icon
           :name="
-            colorMode.preference === 'light'
-              ? 'radix-icons:sun'
-              : 'radix-icons:moon'
+            colorMode.value === 'light' ? 'radix-icons:sun' : 'radix-icons:moon'
           "
           class="size-4"
         />
