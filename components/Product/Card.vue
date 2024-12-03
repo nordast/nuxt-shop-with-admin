@@ -7,10 +7,11 @@ defineProps<{
 }>();
 
 const { onOpen } = usePreviewModal();
+const { addItem } = useCart();
 </script>
 
 <template>
-  <Card class="border p-3 shadow-none">
+  <Card :data="data" class="border p-3 shadow-none">
     <CardContent class="p-0">
       <div class="overflow-hidden rounded-md relative">
         <img :src="data.images[0].url" :alt="data.name" class="h-[200px]" />
@@ -48,7 +49,9 @@ const { onOpen } = usePreviewModal();
         {{ formatPrice(data.price) }}
       </p>
 
-      <Button variant="secondary" class="mt-4 w-full"> Add to Cart </Button>
+      <Button variant="secondary" class="mt-4 w-full" @click="addItem(data)">
+        Add to Cart
+      </Button>
     </CardContent>
   </Card>
   <ProductModal />

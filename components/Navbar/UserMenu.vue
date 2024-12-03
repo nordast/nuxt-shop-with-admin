@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { user } = useUserSession();
+const { user, clear } = useUserSession();
 
 const logout = async () => {
   await clear();

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { user } = useUserSession();
+const { cartItems } = useCart();
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const { user } = useUserSession();
         <NuxtLink to="/cart">
           <Button class="relative rounded-full px-5 py-1 h-8">
             <Icon name="lucide:shopping-bag" class="size-4 mr-2" />
-            5
+            {{ cartItems && cartItems.length }}
           </Button>
         </NuxtLink>
       </nav>
