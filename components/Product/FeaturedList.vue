@@ -2,7 +2,7 @@
 import type { SafeProduct } from "~/types";
 
 const { data: products, status } = await useFetch<SafeProduct[]>(
-  "/api/admin/products/",
+  `/api/admin/products?isFeatured=true&limit=6&sort=createdAt:desc`,
   {
     lazy: true,
   },
