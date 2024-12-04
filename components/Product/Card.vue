@@ -14,7 +14,11 @@ const { addItem } = useCart();
   <Card :data="data" class="border p-3 shadow-none">
     <CardContent class="p-0">
       <div class="overflow-hidden rounded-md relative">
-        <img :src="data.images[0].url" :alt="data.name" class="h-[200px]" />
+        <img
+          :src="data.images[0].url"
+          :alt="data.name"
+          class="h-[200px] mx-auto object-cover object-center"
+        />
 
         <div v-if="data.isFeatured" class="absolute top-2 left-2">
           <Badge variant="destructive" class="w-auto"> Featured </Badge>

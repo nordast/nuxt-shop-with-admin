@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { cartItems, removeAllItems } = useCart();
+const route = useRoute();
+const { showMessage } = useStore();
 
 const totalPrice = computed(() => {
   return cartItems.value.items.reduce((total, item) => {
@@ -8,11 +10,35 @@ const totalPrice = computed(() => {
 });
 
 const onCheckout = async () => {
-  // API Call
   const items = cartItems.value.items.map((item) => item.id);
-  console.log(items);
+
+  const data = await $fetch("/api/checkout", {
+    method: "POST",
+    body: items,
+  });
+
+  if (data?.url) {
+    window.location.href = data.url;
+  }
+
   removeAllItems();
+
+  return;
 };
+
+onMounted(() => {
+  if (route.query.success) {
+    showMessage({
+      title: "Payment successful",
+    });
+  }
+  if (route.query.cancelled) {
+    showMessage({
+      title: "Payment cancelled",
+      variant: "destructive",
+    });
+  }
+});
 </script>
 
 <template>
