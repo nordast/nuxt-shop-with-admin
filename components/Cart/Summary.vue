@@ -2,14 +2,14 @@
 const { cartItems, removeAllItems } = useCart();
 
 const totalPrice = computed(() => {
-  return cartItems.reduce((total, item) => {
+  return cartItems.value.items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);
 });
 
 const onCheckout = async () => {
   // API Call
-  const items = cartItems.map((item) => item.id);
+  const items = cartItems.value.items.map((item) => item.id);
   console.log(items);
   removeAllItems();
 };
@@ -27,7 +27,7 @@ const onCheckout = async () => {
     </div>
 
     <Button
-      :disabled="!cartItems.length"
+      :disabled="!cartItems.items.length"
       class="w-full mt-6"
       type="button"
       @click="onCheckout"

@@ -37,7 +37,7 @@ export default () => {
   };
 
   return {
-    cartItems: store.value.items,
+    cartItems: store,
     addItem,
     removeItem,
     removeAllItems,

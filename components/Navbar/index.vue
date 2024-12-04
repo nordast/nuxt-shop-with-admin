@@ -21,7 +21,7 @@ const { cartItems } = useCart();
         <NuxtLink to="/cart">
           <Button class="relative rounded-full px-5 py-1 h-8">
             <Icon name="lucide:shopping-bag" class="size-4 mr-2" />
-            {{ cartItems && cartItems.length }}
+            {{ cartItems && cartItems.items.length }}
           </Button>
         </NuxtLink>
       </nav>

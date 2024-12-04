@@ -9,8 +9,12 @@ const { cartItems } = useCart();
       <div class="lg:col-span-7">
         <!-- Cart Items-->
         <ul>
-          <CartItem v-for="item in cartItems" :key="item.id" :data="item" />
-          <li v-if="!cartItems.length" class="text-neutral-500">
+          <CartItem
+            v-for="item in cartItems.items"
+            :key="item.id"
+            :data="item"
+          />
+          <li v-if="!cartItems.items.length" class="text-neutral-500">
             Your cart is empty.
           </li>
         </ul>
