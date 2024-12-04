@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import type { Breadcrumb } from "~/types";
 
-defineProps<{
+const props = defineProps<{
   breadcrumbs?: Breadcrumb[] | undefined;
 }>();
+
+const items = ref<Breadcrumb[]>([]);
+
+onMounted(() => {
+  items.value = props.breadcrumbs || [];
+});
 </script>
 
 <template>
@@ -14,7 +20,7 @@ defineProps<{
       </BreadcrumbItem>
       <BreadcrumbSeparator />
 
-      <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb">
+      <template v-for="breadcrumb in items" :key="breadcrumb">
         <BreadcrumbItem>
           <template v-if="!!breadcrumb.href">
             <BreadcrumbLink :href="breadcrumb.href">

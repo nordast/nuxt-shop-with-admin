@@ -12,7 +12,7 @@ defineProps<{
   <div class="space-y-4">
     <h3 class="font-bold text-3xl">{{ title }}</h3>
 
-    <NoResults v-if="!items.length" />
+    <NoResults v-if="!items?.length" />
 
     <div class="grid grid-cols-3 gap-8">
       <template v-if="!isLoading">
