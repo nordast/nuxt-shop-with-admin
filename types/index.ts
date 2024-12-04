@@ -25,3 +25,8 @@ export type SafeProduct = Product & {
   color: Color;
   images: Image[];
 };
+
+export type GraphData = {
+  name: string;
+  total: number;
+};
