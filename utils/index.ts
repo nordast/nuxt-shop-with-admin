@@ -36,3 +36,7 @@ export function getResourceName(resourceUrl: string) {
     [resourceUrl.split(".").length - 2].split("/")
     .pop();
 }
+
+export function nl2br(str: string): string {
+  return str.replace(/\n/g, "<br />");
+}

@@ -36,13 +36,6 @@ defineProps<{
         ></div>
       </div>
     </div>
-
-    <div class="mt-10 flex items-center gap-x-3">
-      <Button class="rounded-full">
-        <Icon name="lucide:shopping-cart" class="size-4" />
-        Add to Cart
-      </Button>
-    </div>
   </div>
 </template>
 

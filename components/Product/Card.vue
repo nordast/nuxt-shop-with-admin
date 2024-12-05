@@ -13,59 +13,68 @@ const imageSrc = ref(props.data.images[0].url);
 </script>
 
 <template>
-  <Card
-    :data="data"
-    class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:shadow-md"
-  >
-    <CardContent class="p-0">
-      <div class="overflow-hidden rounded-md relative">
-        <img
-          :src="imageSrc"
-          :alt="data.name"
-          class="h-[250px] mx-auto object-cover object-center"
-          @mouseenter="(imageSrc = data.images[1].url)"
-          @mouseleave="(imageSrc = data.images[0].url)"
-        />
+  <div>
+    <NuxtLink :to="`/products/${data.id}`">
+      <Card
+        :data="data"
+        class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:shadow-md"
+      >
+        <CardContent class="p-0">
+          <div class="overflow-hidden rounded-md relative">
+            <img
+              :src="imageSrc"
+              :alt="data.name"
+              class="mx-auto object-cover object-center"
+              @mouseenter="(imageSrc = data.images[1].url)"
+              @mouseleave="(imageSrc = data.images[0].url)"
+            />
 
-        <div v-if="data.isFeatured" class="absolute top-2 left-2">
-          <Badge variant="destructive" class="w-auto"> Featured </Badge>
-        </div>
-        <div v-if="data.isFeatured" class="absolute top-2 right-2">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger as-child>
-                <Button
-                  size="icon"
-                  class="rounded-full"
-                  @click.stop="
-                    () => {
-                      onOpen(data);
-                    }
-                  "
-                >
-                  <Icon name="lucide:expand" class="size-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Preview Product</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-      </div>
+            <div v-if="data.isFeatured" class="absolute top-2 left-2">
+              <Badge variant="destructive" class="w-auto"> Featured </Badge>
+            </div>
+            <div v-if="data.isFeatured" class="absolute top-2 right-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger as-child>
+                    <Button
+                      size="icon"
+                      class="rounded-full"
+                      @click.stop.prevent="
+                        () => {
+                          onOpen(data);
+                        }
+                      "
+                    >
+                      <Icon name="lucide:expand" class="size-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Preview Product</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
 
-      <h3 class="mt-4 font-bold text-gary-900">{{ data.name }}</h3>
-      <p class="italic text-gray-500">{{ data.category.name }}</p>
-      <p class="mt-2 font-medium text-foreground">
-        {{ formatPrice(data.price) }}
-      </p>
+          <h3 class="mt-4 font-bold text-gary-900">{{ data.name }}</h3>
+          <p class="italic text-gray-500">{{ data.category.name }}</p>
+          <p class="mt-2 font-medium text-foreground">
+            {{ formatPrice(data.price) }}
+          </p>
 
-      <Button variant="secondary" class="mt-4 w-full" @click="addItem(data)">
-        Add to Cart
-      </Button>
-    </CardContent>
-  </Card>
-  <ProductModal />
+          <Button
+            variant="secondary"
+            class="mt-4 w-full"
+            @click.stop.prevent="addItem(data)"
+          >
+            Add to Cart
+          </Button>
+        </CardContent>
+      </Card>
+    </NuxtLink>
+
+    <ProductModal />
+  </div>
 </template>
 
 <style scoped></style>
