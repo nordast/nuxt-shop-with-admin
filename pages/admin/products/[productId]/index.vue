@@ -180,6 +180,7 @@ const deleteProduct = async () => {
         <AdminFormInput name="name" label="Name" />
 
         <AdminFormTextarea name="details" label="Details" />
+
         <AdminFormTextarea name="features" label="Features" />
 
         <AdminFormNumber
@@ -197,8 +198,6 @@ const deleteProduct = async () => {
         <AdminFormSelect name="colorId" label="Color" :options="colors" />
 
         <AdminFormSelect name="sizeId" label="Size" :options="sizes" />
-
-        <AdminFormSelect name="colorId" label="Color" :options="colors" />
 
         <AdminFormCheckbox
           name="isFeatured"
