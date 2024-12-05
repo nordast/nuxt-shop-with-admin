@@ -3,6 +3,8 @@ const { cartItems, removeAllItems } = useCart();
 const route = useRoute();
 const { showMessage } = useStore();
 
+const itemsCount = computed(() => cartItems.value.items.length);
+
 const totalPrice = computed(() => {
   return cartItems.value.items.reduce((total, item) => {
     return total + Number(item.price);
@@ -53,12 +55,12 @@ onMounted(() => {
     </div>
 
     <Button
-      :disabled="!cartItems.items.length"
+      :disabled="itemsCount === 0"
       class="w-full mt-6"
       type="button"
       @click="onCheckout"
     >
-      Checkout
+      Checkout {{ !itemsCount }}
     </Button>
   </div>
 </template>
