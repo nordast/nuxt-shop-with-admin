@@ -2,6 +2,7 @@ import { h } from "vue";
 import ActionMenu from "./CellAction.vue";
 import type { ColumnDef } from "@tanstack/vue-table";
 import ColorValue from "~/components/Admin/Color/ColorValue.vue";
+import ImageValue from "~/components/Admin/Product/ImageValue.vue";
 
 export interface Product {
   id: string;
@@ -13,9 +14,17 @@ export interface Product {
   isFeatured: boolean;
   isArchived: boolean;
   createdAt: string;
+  images: { url: string }[];
 }
 
 export const columns: ColumnDef<Product>[] = [
+  {
+    accessorKey: "image",
+    header: "Image",
+    cell: ({ row }) => {
+      return h(ImageValue, { imageUrl: row.original.images[0].url });
+    },
+  },
   {
     accessorKey: "name",
     header: "Name",
