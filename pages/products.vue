@@ -24,29 +24,20 @@ const { data: cachedCategories } = useNuxtData("categories");
 const { data: cachedSizes } = useNuxtData("sizes");
 const { data: cachedColors } = useNuxtData("colors");
 
-const { data: categories, status: categoriesStatus } = await useFetch(
-  "/api/admin/categories/",
-  {
-    key: "categories",
-    default: cachedCategories.value,
-  },
-);
+const { data: categories } = await useFetch("/api/admin/categories/", {
+  key: "categories",
+  default: cachedCategories.value,
+});
 
-const { data: sizes, status: sizesStatus } = await useFetch(
-  "/api/admin/sizes/",
-  {
-    key: "sizes",
-    default: cachedSizes.value,
-  },
-);
+const { data: sizes } = await useFetch("/api/admin/sizes/", {
+  key: "sizes",
+  default: cachedSizes.value,
+});
 
-const { data: colors, status: colorsStatus } = await useFetch(
-  "/api/admin/colors/",
-  {
-    key: "colors",
-    default: cachedColors.value,
-  },
-);
+const { data: colors } = await useFetch("/api/admin/colors/", {
+  key: "colors",
+  default: cachedColors.value,
+});
 </script>
 
 <template>
