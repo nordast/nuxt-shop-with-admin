@@ -1,9 +1,18 @@
 <script setup lang="ts">
-const { isOpen, onClose, selectedProduct } = usePreviewModal();
+import type { SafeProduct } from "~/types";
+
+const props = defineProps<{
+  isOpen: boolean;
+  selectedProduct: SafeProduct;
+}>();
+
+const isModalVisible = computed(() => props.isOpen);
+
+const onClose = () => {};
 </script>
 
 <template>
-  <AppModal :is-modal-visible="isOpen" @on-close="onClose">
+  <AppModal :is-modal-visible="isModalVisible" @on-close="onClose">
     <div
       v-if="selectedProduct"
       class="w-full grid grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8"

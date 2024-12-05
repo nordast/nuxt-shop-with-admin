@@ -6,10 +6,16 @@ const props = defineProps<{
   data: SafeProduct;
 }>();
 
-const { onOpen } = usePreviewModal();
 const { addItem } = useCart();
 
 const imageSrc = ref(props.data.images[0].url);
+
+const route = useRoute();
+const isHomePage = computed(() => {
+  return route.path === "/";
+});
+
+const isProductModalVisible = ref(false);
 </script>
 
 <template>
@@ -29,7 +35,10 @@ const imageSrc = ref(props.data.images[0].url);
               @mouseleave="(imageSrc = data.images[0].url)"
             />
 
-            <div v-if="data.isFeatured" class="absolute top-2 left-2">
+            <div
+              v-if="data.isFeatured && !isHomePage"
+              class="absolute top-2 left-2"
+            >
               <Badge variant="destructive" class="w-auto"> Featured </Badge>
             </div>
             <div v-if="data.isFeatured" class="absolute top-2 right-2">
@@ -38,10 +47,10 @@ const imageSrc = ref(props.data.images[0].url);
                   <TooltipTrigger as-child>
                     <Button
                       size="icon"
-                      class="rounded-full"
+                      class="rounded-full cursor-pointer"
                       @click.stop.prevent="
                         () => {
-                          onOpen(data);
+                          isProductModalVisible = true;
                         }
                       "
                     >
@@ -73,7 +82,11 @@ const imageSrc = ref(props.data.images[0].url);
       </Card>
     </NuxtLink>
 
-    <ProductModal />
+    <ProductModal
+      :is-open="isProductModalVisible"
+      :selected-product="data"
+      @on-close="(isProductModalVisible = false)"
+    />
   </div>
 </template>
 
