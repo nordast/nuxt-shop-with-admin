@@ -56,7 +56,10 @@ const { data: colors } = await useFetch("/api/admin/colors/", {
         <div class="mt-6 lg:col-span-4 lg:mt-0">
           <NoResults v-if="status !== 'pending' && !products?.length" />
 
-          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            v-auto-animate
+            class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          >
             <template v-if="status !== 'pending' && products?.length">
               <ProductCard
                 v-for="item in products"
