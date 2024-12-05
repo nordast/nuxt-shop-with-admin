@@ -15,6 +15,8 @@ export default defineEventHandler(async (event) => {
       sizeId,
       isFeatured,
       isArchived,
+      details,
+      features,
     } = await readValidatedBody(event, (body) => productSchema.parse(body));
 
     return db.product.create({
@@ -31,6 +33,8 @@ export default defineEventHandler(async (event) => {
         sizeId,
         isFeatured,
         isArchived,
+        details,
+        features,
         userId: session.user.id,
       },
     });

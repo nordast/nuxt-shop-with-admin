@@ -22,6 +22,8 @@ export const sizeSchema = z.object({
 
 export const productSchema = z.object({
   name: z.string().min(1).max(255),
+  details: z.string().min(1).max(1000),
+  features: z.string().min(1).max(1000),
   images: z.object({ url: z.string().url() }).array().min(1),
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),

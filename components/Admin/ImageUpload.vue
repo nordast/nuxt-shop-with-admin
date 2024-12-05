@@ -80,7 +80,7 @@ const deleteImage = async (url: string) => {
     :options="{
       clientAllowedFormats: allowedFormats,
       multiple: true,
-      maxFiles: 3,
+      maxFiles: 5,
     }"
     @upload="handleUpload"
     @error="handleError"

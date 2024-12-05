@@ -48,7 +48,9 @@ const form = useForm({
   initialValues: currentProduct.id
     ? { ...currentProduct, price: parseFloat(String(currentProduct?.price)) }
     : {
-        name: "Max",
+        name: "",
+        details: "",
+        features: "",
         images: [],
         price: 0,
         categoryId: "",
@@ -176,6 +178,9 @@ const deleteProduct = async () => {
 
       <div class="md:grid md:grid-cols-3 gap-8">
         <AdminFormInput name="name" label="Name" />
+
+        <AdminFormTextarea name="details" label="Details" />
+        <AdminFormTextarea name="features" label="Features" />
 
         <AdminFormNumber
           name="price"
