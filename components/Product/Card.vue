@@ -2,22 +2,29 @@
 import type { SafeProduct } from "~/types";
 import { formatPrice } from "~/utils";
 
-defineProps<{
+const props = defineProps<{
   data: SafeProduct;
 }>();
 
 const { onOpen } = usePreviewModal();
 const { addItem } = useCart();
+
+const imageSrc = ref(props.data.images[0].url);
 </script>
 
 <template>
-  <Card :data="data" class="border p-3 shadow-none">
+  <Card
+    :data="data"
+    class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:shadow-md"
+  >
     <CardContent class="p-0">
       <div class="overflow-hidden rounded-md relative">
         <img
-          :src="data.images[0].url"
+          :src="imageSrc"
           :alt="data.name"
-          class="h-[200px] mx-auto object-cover object-center"
+          class="h-[250px] mx-auto object-cover object-center"
+          @mouseenter="(imageSrc = data.images[1].url)"
+          @mouseleave="(imageSrc = data.images[0].url)"
         />
 
         <div v-if="data.isFeatured" class="absolute top-2 left-2">

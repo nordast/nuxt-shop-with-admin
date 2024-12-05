@@ -14,7 +14,7 @@ defineProps<{
 
     <NoResults v-if="!items?.length" />
 
-    <div class="grid grid-cols-3 gap-8">
+    <div class="grid grid-cols-4 gap-8">
       <template v-if="!isLoading">
         <ProductCard v-for="item in items" :key="item.id" :data="item" />
       </template>

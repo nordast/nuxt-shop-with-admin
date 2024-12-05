@@ -10,7 +10,7 @@ const { data: products, status } = await useFetch<SafeProduct[] | null>(
 </script>
 
 <template>
-  <section class="mx-auto w-full max-w-5xl py-16 sm:py-32">
+  <section class="w-full py-16 sm:py-32">
     <div class="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
       <ProductList
         v-if="products"
