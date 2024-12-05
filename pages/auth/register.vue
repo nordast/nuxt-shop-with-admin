@@ -31,7 +31,7 @@ const onSubmit = async () => {
       description: "Please log in to access your account.",
     });
 
-    await navigateTo("/");
+    await navigateTo("/auth/login");
   } catch (e) {
     const error = handlerError(e);
     showError(error);

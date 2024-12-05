@@ -30,19 +30,19 @@ const { cartItems } = useCart();
 
       <nav class="flex items-center space-x-4 lg:space-x-6">
         <NuxtLink
-          to="/products?categoryId=675198b6e1404c5fd9d1cd8b"
+          to="/products?categoryId=6751a31ab5d13561024f1b73"
           class="nav-category"
         >
           Men
         </NuxtLink>
         <NuxtLink
-          to="/products?categoryId=675198afe1404c5fd9d1cd8a"
+          to="/products?categoryId=6751a30ab5d13561024f1b72"
           class="nav-category"
         >
           Women
         </NuxtLink>
         <NuxtLink
-          to="/products?categoryId=67519780e1404c5fd9d1cd84"
+          to="/products?categoryId=6751a2edb5d13561024f1b71"
           class="nav-category"
         >
           Kids
