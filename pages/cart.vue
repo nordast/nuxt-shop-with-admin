@@ -8,7 +8,7 @@ const { cartItems } = useCart();
     <div class="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
       <div class="lg:col-span-7">
         <!-- Cart Items-->
-        <ul v-auto-animate>
+        <ul>
           <CartItem
             v-for="item in cartItems.items"
             :key="item.id"
