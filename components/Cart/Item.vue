@@ -21,7 +21,7 @@ const onRemove = () => {
       <img
         :src="addCloudinaryParams(props.data.images[0].url)"
         :alt="data.name"
-        class="object-cover object-center"
+        class="w-auto h-48 object-cover object-center"
       />
     </div>
     <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
