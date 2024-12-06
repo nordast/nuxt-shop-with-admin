@@ -29,13 +29,15 @@ const isProductModalVisible = ref(false);
       >
         <CardContent class="p-0">
           <div class="overflow-hidden rounded-md relative">
-            <img
-              :src="imageSrc"
-              :alt="data.name"
-              class="mx-auto object-cover object-center"
-              @mouseenter="(imageSrc = secondaryImg)"
-              @mouseleave="(imageSrc = primaryImg)"
-            />
+            <div class="flex items-center justify-center overflow-hidden h-56">
+              <img
+                :src="imageSrc"
+                :alt="data.name"
+                class="mx-auto object-cover object-center"
+                @mouseenter="(imageSrc = secondaryImg)"
+                @mouseleave="(imageSrc = primaryImg)"
+              />
+            </div>
 
             <div
               v-if="data.isFeatured && !isHomePage"
