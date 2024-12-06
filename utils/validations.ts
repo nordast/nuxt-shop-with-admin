@@ -25,7 +25,7 @@ export const productSchema = z.object({
   details: z.string().min(1).max(1000),
   features: z.string().min(1).max(1000),
   images: z.object({ url: z.string().url() }).array().min(1),
-  price: z.coerce.number().min(1),
+  price: z.coerce.number().min(0.01),
   categoryId: z.string().min(1),
   colorId: z.string().min(1),
   sizeId: z.string().min(1),

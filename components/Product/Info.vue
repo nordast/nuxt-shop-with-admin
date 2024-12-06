@@ -23,7 +23,7 @@ defineProps<{
 
     <div class="flex flex-col gap-y-6">
       <div class="flex items-center gap-x-4">
-        <h3 class="font-semibold text-black">Size:</h3>
+        <h3 class="font-semibold text-black">Gauge:</h3>
         <div>{{ data.size.name }}</div>
       </div>
 

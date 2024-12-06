@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SafeProduct } from "~/types";
-import { formatPrice } from "~/utils";
+import { addCloudinaryParams, formatPrice } from "~/utils";
 
 const props = defineProps<{
   data: SafeProduct;
@@ -8,7 +8,9 @@ const props = defineProps<{
 
 const { addItem } = useCart();
 
-const imageSrc = ref(props.data.images[0].url);
+const primaryImg = addCloudinaryParams(props.data.images[0].url);
+const secondaryImg = addCloudinaryParams(props.data.images[1].url);
+const imageSrc = ref(primaryImg);
 
 const route = useRoute();
 const isHomePage = computed(() => {
@@ -31,8 +33,8 @@ const isProductModalVisible = ref(false);
               :src="imageSrc"
               :alt="data.name"
               class="mx-auto object-cover object-center"
-              @mouseenter="(imageSrc = data.images[1].url)"
-              @mouseleave="(imageSrc = data.images[0].url)"
+              @mouseenter="(imageSrc = secondaryImg)"
+              @mouseleave="(imageSrc = primaryImg)"
             />
 
             <div

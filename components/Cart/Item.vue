@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SafeProduct } from "~/types";
-import { formatPrice } from "~/utils";
+import { addCloudinaryParams, formatPrice } from "~/utils";
 
 interface CartItemProps {
   data: SafeProduct;
@@ -19,7 +19,7 @@ const onRemove = () => {
   <li class="flex py-6 border-b">
     <div class="relative size-24 rounded-md overflow-hidden sm:size-48">
       <img
-        :src="data.images[0].url"
+        :src="addCloudinaryParams(props.data.images[0].url)"
         :alt="data.name"
         class="object-cover object-center"
       />

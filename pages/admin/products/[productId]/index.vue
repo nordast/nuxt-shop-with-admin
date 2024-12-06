@@ -46,7 +46,7 @@ const formSchema = toTypedSchema(productSchema);
 const form = useForm({
   validationSchema: formSchema,
   initialValues: currentProduct.id
-    ? { ...currentProduct, price: parseFloat(String(currentProduct?.price)) }
+    ? { ...currentProduct, price: currentProduct?.price }
     : {
         name: "",
         details: "",
@@ -183,11 +183,7 @@ const deleteProduct = async () => {
 
         <AdminFormTextarea name="features" label="Features" />
 
-        <AdminFormNumber
-          name="price"
-          label="Price"
-          :set-field-value="setFieldValue"
-        />
+        <AdminFormInput name="price" label="Price" />
 
         <AdminFormSelect
           name="categoryId"

@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <FilterItem value-key="categoryId" name="Categories" :data="categories" />
-  <FilterItem value-key="sizeId" name="Sizes" :data="sizes" />
+  <FilterItem value-key="sizeId" name="Gauge" :data="sizes" />
   <FilterItem value-key="colorId" name="Colors" :data="colors" />
 </template>
 
