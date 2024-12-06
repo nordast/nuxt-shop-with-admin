@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: "Running Shoes | Saucony",
+  title: "Wirenco | Portable Cord",
 });
 </script>
 

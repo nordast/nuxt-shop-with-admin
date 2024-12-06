@@ -41,7 +41,10 @@ const isProductModalVisible = ref(false);
             >
               <Badge variant="destructive" class="w-auto"> Featured </Badge>
             </div>
-            <div v-if="data.isFeatured" class="absolute top-2 right-2">
+            <div
+              v-if="data.isFeatured && isHomePage"
+              class="absolute top-2 right-2"
+            >
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger as-child>

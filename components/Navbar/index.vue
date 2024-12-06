@@ -24,25 +24,6 @@ watchDeep(
       </NuxtLink>
 
       <nav class="flex items-center space-x-4 lg:space-x-6">
-        <NuxtLink
-          to="/products?categoryId=6751a31ab5d13561024f1b73"
-          class="nav-category"
-        >
-          Men
-        </NuxtLink>
-        <NuxtLink
-          to="/products?categoryId=6751a30ab5d13561024f1b72"
-          class="nav-category"
-        >
-          Women
-        </NuxtLink>
-        <NuxtLink
-          to="/products?categoryId=6751a2edb5d13561024f1b71"
-          class="nav-category"
-        >
-          Kids
-        </NuxtLink>
-
         <template v-if="user">
           <NavbarAdminMenu v-if="user.role === 'ADMIN'" />
           <NavbarUserMenu />
@@ -61,8 +42,4 @@ watchDeep(
   </header>
 </template>
 
-<style scoped>
-.nav-category {
-  @apply font-semibold hover:text-neutral-500 transition-colors uppercase;
-}
-</style>
+<style scoped></style>

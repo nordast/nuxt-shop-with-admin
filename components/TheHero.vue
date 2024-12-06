@@ -2,10 +2,11 @@
 
 <template>
   <section class="root">
-    <h1 class="text-7xl font-mono font-black">Building Wire</h1>
+    <h1 class="text-7xl font-mono font-black">Portable Cord</h1>
 
     <div class="text-2xl font-bold">
-      Non-Metallic Copper Wire for use in Indoor Applications.
+      Portable cord is used for temporary or portable power applications at
+      commercial, residential and industrial work sites.
     </div>
 
     <div>
@@ -13,8 +14,9 @@
         <Button
           class="bg-primary rounded-md text-lg px-8 py-6 cursor-pointer hover:bg-sky-400 transition"
           type="button"
-          >Shop now</Button
         >
+          Shop now
+        </Button>
       </NuxtLink>
     </div>
   </section>
@@ -22,7 +24,7 @@
 
 <style scoped>
 .root {
-  @apply text-white bg-slate-100 bg-[url('/images/hero.webp')] bg-no-repeat bg-cover bg-center border-b border-slate-200 py-24 text-center space-y-12;
+  @apply text-white bg-slate-100 bg-[url('/images/hero.webp')] bg-no-repeat bg-cover bg-center border-b border-slate-200 pt-12 pb-36 text-center space-y-12;
 }
 
 .nav-category {
