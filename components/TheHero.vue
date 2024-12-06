@@ -2,25 +2,19 @@
 
 <template>
   <section class="root">
-    <h1 class="text-7xl font-mono font-black">New Collection</h1>
-    <div class="flex items-center justify-center space-x-4 lg:space-x-6">
-      <NuxtLink
-        to="/products?categoryId=6751a31ab5d13561024f1b73"
-        class="nav-category"
-      >
-        Men
-      </NuxtLink>
-      <NuxtLink
-        to="/products?categoryId=6751a30ab5d13561024f1b72"
-        class="nav-category"
-      >
-        Women
-      </NuxtLink>
-      <NuxtLink
-        to="/products?categoryId=6751a2edb5d13561024f1b71"
-        class="nav-category"
-      >
-        Kids
+    <h1 class="text-7xl font-mono font-black">Building Wire</h1>
+
+    <div class="text-2xl font-bold">
+      Non-Metallic Copper Wire for use in Indoor Applications.
+    </div>
+
+    <div>
+      <NuxtLink to="/products">
+        <Button
+          class="bg-primary rounded-md text-lg px-8 py-6 cursor-pointer hover:bg-sky-400 transition"
+          type="button"
+          >Shop now</Button
+        >
       </NuxtLink>
     </div>
   </section>
@@ -28,7 +22,7 @@
 
 <style scoped>
 .root {
-  @apply text-white bg-slate-100 bg-[url('/images/hero.png')] bg-no-repeat bg-cover bg-center border-b border-slate-200 py-48 text-center space-y-24;
+  @apply text-white bg-slate-100 bg-[url('/images/hero.webp')] bg-no-repeat bg-cover bg-center border-b border-slate-200 py-24 text-center space-y-12;
 }
 
 .nav-category {

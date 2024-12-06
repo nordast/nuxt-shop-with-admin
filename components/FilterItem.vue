@@ -37,7 +37,7 @@ const onClick = (id: string) => {
         v-for="filter in data"
         :key="filter.id"
         :variant="route.query[valueKey] === filter.id ? 'secondary' : 'outline'"
-        class="cursor-pointer px-2 py-1 font-medium"
+        class="cursor-pointer px-3 py-2 font-medium rounded-md"
         @click="onClick(filter.id)"
       >
         {{ filter.name }}

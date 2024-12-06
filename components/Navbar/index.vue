@@ -13,26 +13,14 @@ watchDeep(
 <template>
   <header class="border z-10">
     <div
-      class="bg-[#ff0000] text-white border-b border-slate-200 p-1 text-center"
+      class="bg-primary text-white border-b border-slate-200 p-1 text-center"
     >
-      <span class="capitalize italic text-xl font-black">
-        Holiday Starts Now
-      </span>
-      <span class="font-semibold">
-        &nbsp; 25% Off<sup>†</sup>
-        &nbsp;With Code
-        <strong class="underline">CHEER</strong>
-      </span>
-      &nbsp;&nbsp;
-      <span class="text-sm">
-        <sup>†</sup>
-        Some exclusions apply.
-      </span>
+      FREE SHIPPING ON ALL ORDERS $19.99 OR MORE!!!
     </div>
 
     <div class="flex py-10 px-10 items-center justify-between">
       <NuxtLink to="/" class="">
-        <img src="/logo.svg" alt="Logo" class="cursor-pointer w-40" />
+        <img src="/logo.avif" alt="Logo" class="cursor-pointer w-40" />
       </NuxtLink>
 
       <nav class="flex items-center space-x-4 lg:space-x-6">
