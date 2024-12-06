@@ -33,7 +33,7 @@ const isProductModalVisible = ref(false);
               <img
                 :src="imageSrc"
                 :alt="data.name"
-                class="mx-auto object-cover object-center"
+                class="mx-auto max-h-56 object-cover object-center"
                 @mouseenter="(imageSrc = secondaryImg)"
                 @mouseleave="(imageSrc = primaryImg)"
               />
