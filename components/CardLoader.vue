@@ -1,25 +1,20 @@
 <script setup lang="ts"></script>
 
 <template>
-  <Card>
+  <Card class="bg-white border border-slate-100 rounded-3xl p-8">
     <CardContent class="p-0">
-      <div class="grid gap-4 p-4 pt-4 w-full">
-        <div class="min-h-[170px] overflow-hidden rounded-md relative">
-          <Skeleton class="h-[200px] transition-all hover:scale-105" />
-
-          <!--          <div class="flex flex-col space-y-2 absolute top-2 right-2">-->
-          <!--            <Skeleton class="size-8 rounded-full" />-->
-          <!--            <Skeleton class="size-8 rounded-full" />-->
-          <!--          </div>-->
+      <div class="grid gap-4 w-full">
+        <div class="h-56 overflow-hidden rounded-md relative">
+          <Skeleton class="h-56 transition-all hover:scale-105" />
         </div>
 
-        <Skeleton class="h-4 w-[90%]" />
-        <Skeleton class="h-4 w-[80%]" />
+        <Skeleton class="h-6 w-[90%] mt-4" />
+        <Skeleton class="h-6 w-[50%]" />
       </div>
     </CardContent>
 
-    <CardFooter class="border-t p-4 pt-4 w-full justify-between">
-      <Skeleton class="h-4 w-[200px ]" />
+    <CardFooter class="w-full justify-between p-0">
+      <Skeleton class="h-9 w-full mt-4" />
     </CardFooter>
   </Card>
 </template>

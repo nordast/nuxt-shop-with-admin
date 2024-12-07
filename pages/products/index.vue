@@ -41,8 +41,8 @@ const { data: colors } = await useFetch("/api/admin/colors/", {
 </script>
 
 <template>
-  <div class="mx-auto max-w-6xl my-4 w-fill">
-    <div class="px-4 pb-24">
+  <div class="mx-auto my-4 w-fill">
+    <div class="p-10 pb-24">
       <div class="lg:grid lg:grid-cols-5 lg:gap-x-8">
         <MobileFilter
           :categories="categories"
@@ -56,7 +56,7 @@ const { data: colors } = await useFetch("/api/admin/colors/", {
         <div class="mt-6 lg:col-span-4 lg:mt-0">
           <NoResults v-if="status !== 'pending' && !products?.length" />
 
-          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <template v-if="status !== 'pending' && products?.length">
               <ProductCard
                 v-for="item in products"
@@ -66,7 +66,7 @@ const { data: colors } = await useFetch("/api/admin/colors/", {
             </template>
 
             <template v-if="status === 'pending'">
-              <CardLoader v-for="i in 6" :key="i" />
+              <CardLoader v-for="i in 8" :key="i" />
             </template>
           </div>
         </div>
