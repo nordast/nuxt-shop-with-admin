@@ -35,20 +35,50 @@ export default defineEventHandler(async (event) => {
     },
   });
 
+  const totalPrice = products.reduce((total: number, item: Product) => {
+    return total + Number(item.price);
+  }, 0);
+  const tax = totalPrice * 50 * 0.15;
+  const processing = 19.99;
+
+  const lineItems = products.map((product: Product) => {
+    return {
+      quantity: 1,
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: product.name,
+        },
+        unit_amount: Math.round(Number(product.price) * 100 * 50),
+      },
+    };
+  });
+
+  lineItems.push({
+    quantity: 1,
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: "Order Processing Fee",
+      },
+      unit_amount: Math.round(processing * 100),
+    },
+  });
+
+  lineItems.push({
+    quantity: 1,
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: "Tax",
+      },
+      unit_amount: Math.round(tax * 100),
+    },
+  });
+
   // Stripe
   const session = await stripe.checkout.sessions.create({
-    line_items: products.map((product: Product) => {
-      return {
-        quantity: 1,
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: product.name,
-          },
-          unit_amount: product.price * 100,
-        },
-      };
-    }),
+    line_items: lineItems,
     mode: "payment",
     billing_address_collection: "required",
     phone_number_collection: {

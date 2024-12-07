@@ -14,7 +14,7 @@ defineProps<{
     <div class="mt-3 flex items-end justify-between">
       <div class="text-2xl text-gray-900">
         <div class="flex items-center justify-between">
-          <div class="font-semibold">{{ formatPrice(data.price) }}</div>
+          <div class="font-semibold">{{ formatPrice(data.price) }} FT</div>
         </div>
       </div>
     </div>
@@ -34,6 +34,11 @@ defineProps<{
           :style="`background-color: ${data.color.value}`"
           :title="data.color.name"
         ></div>
+      </div>
+
+      <div class="flex items-center gap-x-4">
+        <h3 class="font-semibold text-black">Length:</h3>
+        <div>50 ft</div>
       </div>
     </div>
   </div>

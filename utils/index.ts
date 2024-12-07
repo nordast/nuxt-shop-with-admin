@@ -27,7 +27,7 @@ export function formatPrice(price: number) {
     minimumFractionDigits: isInteger ? 0 : 2,
   });
 
-  return formatter.format(price) + " FT";
+  return formatter.format(price);
 }
 
 export function getResourceName(resourceUrl: string) {

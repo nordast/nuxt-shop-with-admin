@@ -40,7 +40,10 @@ const onRemove = () => {
           </p>
         </div>
 
-        <div class="font-semibold">{{ formatPrice(data.price) }}</div>
+        <div>
+          <span class="font-semibold">{{ formatPrice(data.price) }} FT</span> x
+          50
+        </div>
       </div>
     </div>
   </li>

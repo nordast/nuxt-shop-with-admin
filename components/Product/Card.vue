@@ -75,7 +75,7 @@ const isProductModalVisible = ref(false);
           <h3 class="mt-4 font-bold text-gary-900">{{ data.name }}</h3>
           <p class="italic text-gray-500">{{ data.category.name }}</p>
           <p class="mt-2 font-medium text-foreground">
-            {{ formatPrice(data.price) }}
+            {{ formatPrice(data.price) }} FT
           </p>
 
           <Button

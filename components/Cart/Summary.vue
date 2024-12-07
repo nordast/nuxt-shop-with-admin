@@ -4,14 +4,22 @@ const route = useRoute();
 const { showMessage } = useStore();
 
 const itemsCount = computed(() => cartItems.value.items.length);
+const isLoading = ref(false);
 
-const totalPrice = computed(() => {
-  return cartItems.value.items.reduce((total, item) => {
+const subTotalPrice = computed(() => {
+  const price = cartItems.value.items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);
+
+  return price * 50;
 });
 
+const tax = computed(() => subTotalPrice.value * 0.15);
+const processing = 19.99;
+const totalPrice = computed(() => subTotalPrice.value + tax.value + processing);
+
 const onCheckout = async () => {
+  isLoading.value = true;
   const items = cartItems.value.items.map((item) => item.id);
 
   const data = await $fetch("/api/checkout", {
@@ -24,7 +32,7 @@ const onCheckout = async () => {
   }
 
   removeAllItems();
-
+  isLoading.value = false;
   return;
 };
 
@@ -45,22 +53,36 @@ onMounted(() => {
 
 <template>
   <div class="root">
-    <h2 class="text-lg font-medium text-gray-900">Order summary for this</h2>
+    <h2 class="text-lg font-medium text-gray-900">Your Order</h2>
 
     <div class="mt-6 space-y-4">
       <div class="summary">
+        <div class="text-base font-medium text-gray-900">Subtotal</div>
+        <div class="font-semibold">{{ formatPrice(subTotalPrice) }}</div>
+      </div>
+      <div class="summary">
+        <div class="text-base font-medium text-gray-900">
+          Order Processing Fee
+        </div>
+        <div class="font-semibold">{{ formatPrice(processing) }}</div>
+      </div>
+      <div class="summary">
+        <div class="text-base font-medium text-gray-900">Tax</div>
+        <div class="font-semibold">{{ formatPrice(tax) }}</div>
+      </div>
+      <div class="summary text-lg">
         <div class="text-base font-medium text-gray-900">Order Total</div>
         <div class="font-semibold">{{ formatPrice(totalPrice) }}</div>
       </div>
     </div>
 
     <Button
-      :disabled="itemsCount === 0"
+      :disabled="itemsCount === 0 || isLoading"
       class="w-full mt-6"
       type="button"
       @click="onCheckout"
     >
-      Checkout {{ !itemsCount }}
+      Checkout
     </Button>
   </div>
 </template>
