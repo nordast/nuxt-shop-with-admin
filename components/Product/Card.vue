@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SafeProduct } from "~/types";
 import { addCloudinaryParams, formatPrice } from "~/utils";
+import { cn } from "~/lib/utils";
 
 const props = defineProps<{
   data: SafeProduct;
@@ -18,6 +19,16 @@ const isHomePage = computed(() => {
 });
 
 const isProductModalVisible = ref(false);
+const btnLabelDefault = "Add to Cart";
+const btnLabel = ref(btnLabelDefault);
+const btnClass = ref("");
+
+const onAddClick = (data: SafeProduct) => {
+  addItem(data);
+
+  btnLabel.value = "Added to Cart";
+  btnClass.value = "bg-slate-200 hover:bg-slate-200";
+};
 </script>
 
 <template>
@@ -80,10 +91,10 @@ const isProductModalVisible = ref(false);
 
           <Button
             variant="secondary"
-            class="mt-4 w-full"
-            @click.stop.prevent="addItem(data)"
+            :class="cn('mt-4 w-full', btnClass)"
+            @click.stop.prevent="onAddClick(data)"
           >
-            Add to Cart
+            {{ btnLabel }}
           </Button>
         </CardContent>
       </Card>
