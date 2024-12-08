@@ -37,8 +37,8 @@
   }
 
   .dark {
-    --background: #020817;
-    --foreground: #F8FAFC;
+    --background: #202125;
+    --foreground: #bdbec3;
 
     --muted: #1E293B;
     --muted-foreground: #94A3B8;
@@ -81,9 +81,4 @@
   .link {
     @apply text-muted-foreground hover:text-primary hover:underline transition-colors;
   }
-}
-
-.dark-mode body {
-  background-color: #202125;
-  color: #bdbec3;
 }

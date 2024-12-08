@@ -12,15 +12,11 @@ watchDeep(
 
 <template>
   <header class="border z-10">
-    <div
-      class="bg-primary text-white border-b border-slate-200 p-1 text-center"
-    >
-      FREE SHIPPING ON ALL ORDERS $19.99 OR MORE!!!
-    </div>
+    <div class="header-top">FREE SHIPPING ON ALL ORDERS $19.99 OR MORE!!!</div>
 
     <div class="flex py-10 px-10 items-center justify-between">
       <NuxtLink to="/" class="">
-        <img src="/logo.avif" alt="Logo" class="cursor-pointer w-40" />
+        <img src="/logo.png" alt="Logo" class="cursor-pointer w-40" />
       </NuxtLink>
 
       <nav class="flex items-center space-x-4 lg:space-x-6">
@@ -42,4 +38,8 @@ watchDeep(
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+.header-top {
+  @apply bg-primary text-white border-b border-slate-200 p-1 text-center dark:text-slate-100 dark:bg-blue-900 dark:border-zinc-800;
+}
+</style>

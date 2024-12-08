@@ -9,12 +9,12 @@
         </div>
 
         <Skeleton class="h-6 w-[90%] mt-4" />
-        <Skeleton class="h-6 w-[50%]" />
+        <Skeleton class="h-6 w-[50%] mt-8" />
       </div>
     </CardContent>
 
     <CardFooter class="w-full justify-between p-0">
-      <Skeleton class="h-9 w-full mt-4" />
+      <Skeleton class="h-[34px] w-full mt-4" />
     </CardFooter>
   </Card>
 </template>

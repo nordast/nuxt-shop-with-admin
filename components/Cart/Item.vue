@@ -30,12 +30,16 @@ const onRemove = () => {
       </div>
       <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
         <div class="flex justify-between">
-          <p class="text-lg font-semibold text-black">{{ data.name }}</p>
+          <p class="text-lg font-semibold text-black dark:text-slate-100">
+            {{ data.name }}
+          </p>
         </div>
 
         <div class="mt-1 flex text-sm">
-          <p class="text-gray-500">{{ data.color.name }}</p>
-          <p class="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+          <p class="text-gray-500 dark:text-slate-100">{{ data.color.name }}</p>
+          <p
+            class="ml-4 border-l border-gray-200 pl-4 text-gray-500 dark:text-slate-100"
+          >
             {{ data.size.name }}
           </p>
         </div>

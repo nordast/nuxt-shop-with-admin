@@ -24,7 +24,7 @@
 
 <style scoped>
 .root {
-  @apply text-white bg-slate-100 bg-[url('/images/hero.webp')] bg-no-repeat bg-cover bg-center border-b border-slate-200 pt-12 pb-36 text-center space-y-12;
+  @apply text-white bg-slate-100 bg-[url('/images/hero.webp')] bg-no-repeat bg-cover bg-center pt-12 pb-36 text-center space-y-12;
 }
 
 .nav-category {

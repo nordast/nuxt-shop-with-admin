@@ -53,25 +53,35 @@ onMounted(() => {
 
 <template>
   <div class="root">
-    <h2 class="text-lg font-medium text-gray-900">Your Order</h2>
+    <h2
+      class="text-center text-lg font-medium text-gray-900 dark:text-slate-100"
+    >
+      Your Order
+    </h2>
 
     <div class="mt-6 space-y-4">
       <div class="summary">
-        <div class="text-base font-medium text-gray-900">Subtotal</div>
+        <div class="text-base font-medium text-gray-900 dark:text-slate-100">
+          Subtotal
+        </div>
         <div class="font-semibold">{{ formatPrice(subTotalPrice) }}</div>
       </div>
       <div class="summary">
-        <div class="text-base font-medium text-gray-900">
+        <div class="text-base font-medium text-gray-900 dark:text-slate-100">
           Order Processing Fee
         </div>
         <div class="font-semibold">{{ formatPrice(processing) }}</div>
       </div>
       <div class="summary">
-        <div class="text-base font-medium text-gray-900">Tax</div>
+        <div class="text-base font-medium text-gray-900 dark:text-slate-100">
+          Tax
+        </div>
         <div class="font-semibold">{{ formatPrice(tax) }}</div>
       </div>
       <div class="summary text-lg">
-        <div class="text-base font-medium text-gray-900">Order Total</div>
+        <div class="text-base font-medium text-gray-900 dark:text-slate-100">
+          Order Total
+        </div>
         <div class="font-semibold">{{ formatPrice(totalPrice) }}</div>
       </div>
     </div>
@@ -89,7 +99,7 @@ onMounted(() => {
 
 <style scoped>
 .root {
-  @apply mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8;
+  @apply mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50;
 }
 .summary {
   @apply flex items-center justify-between border-t border-gray-200 pt-4;

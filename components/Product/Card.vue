@@ -83,7 +83,11 @@ const onAddClick = (data: SafeProduct) => {
             </div>
           </div>
 
-          <h3 class="mt-4 font-bold text-gary-900">{{ data.name }}</h3>
+          <h3
+            class="mt-4 font-bold text-gary-900 line-clamp-2 inline-block h-12"
+          >
+            {{ data.name }}
+          </h3>
           <p class="italic text-gray-500">{{ data.category.name }}</p>
           <p class="mt-2 font-medium text-foreground">
             {{ formatPrice(data.price) }} FT
