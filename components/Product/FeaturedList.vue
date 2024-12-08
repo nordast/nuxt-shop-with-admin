@@ -15,7 +15,7 @@ const { data: products, status } = await useFetch<SafeProduct[]>(
       <div class="space-y-4">
         <h3 class="font-bold text-3xl">Featured Products</h3>
 
-        <NoResults v-if="!products?.length" />
+        <NoResults v-if="!products?.length && status !== 'pending'" />
 
         <div class="grid grid-cols-4 gap-8">
           <template v-if="status !== 'pending'">
